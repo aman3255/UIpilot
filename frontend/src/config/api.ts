@@ -1,6 +1,6 @@
 // API Configuration
 export const API_CONFIG = {
-  BASE_URL: 'http://localhost:8090',
+  BASE_URL: 'https://uipilot.onrender.com',
   AUTH_ENDPOINTS: {
     SIGNUP: '/api/v1/auth/signup',
     SIGNIN: '/api/v1/auth/signin',
