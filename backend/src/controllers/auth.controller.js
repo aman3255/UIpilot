@@ -38,6 +38,7 @@ const SignupController = async (req, res) => {
     try {
         const { fullName, email, password } = req.body;
 
+        // Validate full name
         if (!fullName?.trim()) {
             return res.status(400).json({ success: false, message: "Full name is required" });
         }
@@ -46,6 +47,7 @@ const SignupController = async (req, res) => {
             return res.status(400).json({ success: false, message: "Full name must be between 3 and 50 characters" });
         }
 
+        // Validate email
         if (!email?.trim()) {
             return res.status(400).json({ success: false, message: "Email is required" });
         }
@@ -54,6 +56,7 @@ const SignupController = async (req, res) => {
             return res.status(400).json({ success: false, message: "Please provide a valid email address" });
         }
 
+        // Validate password
         if (!password) {
             return res.status(400).json({ success: false, message: "Password is required" });
         }
@@ -129,6 +132,7 @@ const SigninController = async (req, res) => {
     try {
         const { email, password } = req.body;
 
+        // Validate email
         if (!email?.trim()) {
             return res.status(400).json({ success: false, message: 'Email is required' });
         }
@@ -137,6 +141,7 @@ const SigninController = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide a valid email address' });
         }
 
+        // Validate password
         if (!password) {
             return res.status(400).json({ success: false, message: 'Password is required' });
         }

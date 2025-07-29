@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, CheckCircle, Table, Download, ArrowRight, Lock, Sparkles, Code2, Monitor } from 'lucide-react';
+import { ArrowRight, Lock, Sparkles, Code2, Monitor } from 'lucide-react';
 
 const HowItWorks: React.FC = () => {
   const steps = [

@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ onAuthModalOpen }) => {
             Your Code,{' '}
             <span className="text-[#00FFB3]">Your Playground</span>
           </h1>
-          
+
           <p className="text-xl text-[#CFCFCF] mb-8 leading-relaxed max-w-2xl">
             Build, edit, and run code snippets in real time. Bring your ideas to life with a developer-first experience that makes coding feel effortless.
           </p>
@@ -23,12 +23,13 @@ export const Hero: React.FC<HeroProps> = ({ onAuthModalOpen }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button
               onClick={() => onAuthModalOpen('signup')}
-              className="bg-[#00FFB3] text-black px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#00FFB3]/90 transition-all duration-200 flex items-center justify-center space-x-2 hover:scale-105"
+              className="bg-gradient-to-r from-[#00FFB3] via-[#00D4AA] to-[#00FFB3] bg-[length:200%_200%] animate-gradient text-black px-8 py-4 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 flex items-center justify-center space-x-2 hover:scale-105"
             >
               <Play size={20} fill="currentColor" />
               <span>Start Coding</span>
             </button>
-            
+
+
             <button className="border-2 border-[#CFCFCF] text-[#CFCFCF] px-8 py-4 rounded-2xl font-bold text-lg hover:text-white hover:border-white transition-all duration-200 flex items-center justify-center space-x-2 hover:scale-105">
               <BookOpen size={20} />
               <span>Explore Docs</span>
@@ -81,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onAuthModalOpen }) => {
                 <div className="text-gray-500">9</div>
                 <div className="text-gray-500">10</div>
               </div>
-              
+
               <div className="absolute top-16 left-12 space-y-2">
                 <div className="text-blue-400">import <span className="text-yellow-300">React</span> <span className="text-purple-400">from</span> <span className="text-green-400">'react'</span>;</div>
                 <div></div>
@@ -110,7 +111,7 @@ export const Hero: React.FC<HeroProps> = ({ onAuthModalOpen }) => {
           <div className="absolute -top-4 -right-4 bg-[#00FFB3] text-black px-3 py-1 rounded-lg text-sm font-semibold animate-pulse">
             Live Preview
           </div>
-          
+
           <div className="absolute -bottom-4 -left-4 bg-gray-800 border border-gray-600 text-white px-3 py-1 rounded-lg text-sm flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span>Running</span>

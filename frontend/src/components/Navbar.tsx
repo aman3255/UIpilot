@@ -26,8 +26,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onAuthModalOpen }) => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
+    { name: 'How It Works', href: '/how-it-works' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Docs', href: '/docs' },
+  ];
+
+  // Add Code link for authenticated users
+  const authenticatedLinks = [
+    ...navLinks,
+    { name: 'Code', href: '/code' },
   ];
 
   const isActiveLink = (href: string) => {
@@ -50,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onAuthModalOpen }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {(user ? authenticatedLinks : navLinks).map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
@@ -86,6 +92,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onAuthModalOpen }) => {
                       <p className="text-white font-semibold">{user.fullName}</p>
                       <p className="text-gray-400 text-sm">{user.email}</p>
                     </div>
+                    <Link
+                      to="/code"
+                      onClick={() => setShowUserMenu(false)}
+                      className="flex items-center space-x-2 w-full px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200"
+                    >
+                      <Code2 size={16} />
+                      <span>Code Generator</span>
+                    </Link>
                     <button
                       onClick={() => {
                         logout();
@@ -132,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onAuthModalOpen }) => {
         {isMenuOpen && (
           <div className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10 rounded-b-2xl">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navLinks.map((link) => (
+              {(user ? authenticatedLinks : navLinks).map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}

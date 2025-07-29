@@ -1,12 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Play, Code2, Terminal, Layers, ArrowRight } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 
 interface HomeProps {
   onAuthModalOpen: (mode: 'login' | 'signup') => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ onAuthModalOpen }) => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate('/code');
+    } else {
+      onAuthModalOpen('signup');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#001F3F] via-[#0C0C0C] to-[#001122]">
       {/* Hero Section */}
@@ -28,11 +40,11 @@ export const Home: React.FC<HomeProps> = ({ onAuthModalOpen }) => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
-                onClick={() => onAuthModalOpen('signup')}
+                onClick={handleGetStarted}
                 className="bg-gradient-to-r from-[#00FFB3] to-[#0074D9] text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <Play size={20} fill="currentColor" />
-                <span>Get Started</span>
+                <span>{isAuthenticated ? 'Start Coding' : 'Get Started'}</span>
               </button>
             </div>
 

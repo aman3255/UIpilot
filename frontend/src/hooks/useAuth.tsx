@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { AuthContextType, LoginPayload, SignupPayload, User, AuthResponse } from '../types/auth';
+import { getApiUrl, API_CONFIG } from '../config/api';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_BASE_URL = 'http://localhost:8090/api/v1/auth';
+
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (payload: LoginPayload) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/signin`, {
+      const response = await fetch(getApiUrl(API_CONFIG.AUTH_ENDPOINTS.SIGNIN), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signup = async (payload: SignupPayload) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/signup`, {
+      const response = await fetch(getApiUrl(API_CONFIG.AUTH_ENDPOINTS.SIGNUP), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

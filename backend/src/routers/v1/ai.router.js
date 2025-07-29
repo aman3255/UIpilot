@@ -5,6 +5,7 @@ const { codePreviewController } = require('../../controllers/codePreview.control
 const { messageController }  = require('../../controllers/message.controller');
 const { AuthMiddleware } = require('../../middlewares/auth.middleware');
 
+const aiRouter = express.Router();
 // All routes require authentication
 aiRouter.use(AuthMiddleware);
 

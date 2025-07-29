@@ -7,7 +7,8 @@ import { AuthModal } from './components/AuthModal';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Blog } from './pages/Blog';
-import { Docs } from './pages/Docs';
+import HowItWorks from './pages/HowItWorks';
+import { CodeGeneratorWrapper } from './components/CodeGeneratorWrapper';
 
 function App() {
   const [authModal, setAuthModal] = useState<{
@@ -31,16 +32,17 @@ function App() {
       <Router>
         <div className="min-h-screen bg-[#0C0C0C]">
           <Navbar onAuthModalOpen={openAuthModal} />
-          
+
           <Routes>
             <Route path="/" element={<Home onAuthModalOpen={openAuthModal} />} />
+            <Route path="/code" element={<CodeGeneratorWrapper onAuthRequired={() => openAuthModal('login')} />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/docs" element={<Docs />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
           </Routes>
-          
+
           <Footer />
-          
+
           <AuthModal
             isOpen={authModal.isOpen}
             onClose={closeAuthModal}
@@ -53,3 +55,4 @@ function App() {
 }
 
 export default App;
+
