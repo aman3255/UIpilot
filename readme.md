@@ -1,445 +1,344 @@
-# Complete API Testing Guide
+# 🚀 UIpilot - AI-Powered React Component Generator
 
-## Prerequisites
+<div align="center">
 
-1. **Start your server**: `npm start` or `node server.js`
-2. **Base URL**: `http://localhost:4000`
-3. **Testing Tool**: Use Postman, Thunder Client (VS Code), or curl commands
+![UIpilot Logo](https://img.shields.io/badge/UIpilot-AI%20Code%20Generator-00FFB3?style=for-the-badge&logo=react&logoColor=black)
 
----
+**Your Code, Your Playground** - Build, edit, and run React components in real-time with AI assistance
 
-## Step 1: Authentication Routes Testing
+[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-8.16.5-47A248?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI%20Model-4285F4?style=flat-square&logo=google)](https://ai.google.dev/)
 
-### 1.1 User Signup
-```http
-POST http://localhost:4000/api/v1/auth/signup
-Content-Type: application/json
+[Live Demo](#) • [Documentation](#documentation) • [Features](#-features) • [Tech Stack](#-tech-stack)
 
-{
-  "username": "testuser",
-  "email": "test@example.com",
-  "password": "password123",
-  "fullName": "Test User"
-}
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "User created successfully",
-  "data": {
-    "userId": "user_id_here",
-    "username": "testuser",
-    "email": "test@example.com"
-  }
-}
-```
-
-### 1.2 User Signin
-```http
-POST http://localhost:4000/api/v1/auth/signin
-Content-Type: application/json
-
-{
-  "email": "test@example.com",
-  "password": "password123"
-}
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Login successful",
-  "data": {
-    "token": "jwt_token_here",
-    "user": {
-      "id": "user_id_here",
-      "username": "testuser",
-      "email": "test@example.com"
-    }
-  }
-}
-```
-
-**⚠️ IMPORTANT: Copy the JWT token from signin response - you'll need it for all subsequent requests!**
+</div>
 
 ---
 
-## Step 2: AI Routes Testing (Requires Authentication)
+## 📖 Overview
 
-**Add this header to ALL requests below:**
-```
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
+UIpilot is a full-stack web application that leverages AI to generate, preview, edit, and download React components in real-time. Built with modern technologies, it provides a seamless development experience for creating React components with TypeScript support.
 
-### 2.1 Generate AI Response (Create New Chat)
-```http
-POST http://localhost:4000/api/v1/ai/generate
-Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
+### 🎯 Key Features
 
-{
-  "prompt": "Create a simple HTML button with CSS styling that changes color on hover"
-}
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "AI response generated successfully",
-  "data": {
-    "chatSessionId": "uuid-here",
-    "response": "Here's a simple HTML button with hover effects...",
-    "code": "<button class=\"hover-button\">Click Me</button>\n<style>\n.hover-button { ... }\n</style>",
-    "messageId": "message_id_here"
-  }
-}
-```
-
-### 2.2 Generate AI Response (Continue Existing Chat)
-```http
-POST http://localhost:4000/api/v1/ai/generate
-Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-
-{
-  "prompt": "Make the button bigger and add a shadow effect",
-  "chatSessionId": "uuid-from-previous-response"
-}
-```
+- 🤖 **AI-Powered Code Generation** - Generate React components using Google Gemini AI
+- ⚡ **Real-time Live Preview** - See your code running instantly with Sandpack integration
+- 🎨 **Advanced Code Editor** - Monaco Editor with syntax highlighting and autocompletion
+- 💾 **Chat Session Management** - Organize your coding sessions with persistent storage
+- 🔐 **User Authentication** - Secure JWT-based authentication system
+- 📱 **Responsive Design** - Beautiful UI that works on all devices
+- 🚀 **Instant Deployment** - Download generated components as ready-to-use files
 
 ---
 
-## Step 3: Chat Session Routes Testing
+## ✨ Features
 
-### 3.1 Create New Chat Session
-```http
-POST http://localhost:4000/api/v1/ai/sessions?action=create
-Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
+### 🤖 AI Code Generation
+- **Smart Prompts**: Describe what you want to create in natural language
+- **React Components**: Generate TypeScript React components with inline styles
+- **Code Quality**: AI ensures clean, working, and well-structured code
+- **Type Safety**: Full TypeScript support with proper interfaces
 
-{
-  "title": "My Custom Chat Session"
-}
+### ⚡ Live Development Environment
+- **Sandpack Integration**: Real-time React component preview with hot reload
+- **Code Editor**: Full-featured Monaco Editor with syntax highlighting
+- **Instant Preview**: See changes as you type with immediate compilation
+- **Console Support**: Built-in console for debugging and logging
+
+### 🎨 Advanced Code Management
+- **Format Code**: Built-in code formatting and beautification
+- **Copy to Clipboard**: One-click code copying
+- **Download Files**: Save components as `.tsx` files
+- **Version Control**: Track changes and manage code history
+
+### 💬 Chat Session System
+- **Multiple Sessions**: Create and manage multiple coding sessions
+- **Conversation History**: Complete chat history with user prompts and AI responses
+- **Session Persistence**: All sessions saved to MongoDB
+- **Real-time Updates**: Instant synchronization across sessions
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development experience
+- **Vite** - Lightning-fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **Lucide React** - Beautiful icon library
+
+### Code Editing & Preview
+- **@codesandbox/sandpack-react** - Live code sandbox and preview
+- **@uiw/react-codemirror** - Advanced code editor with syntax highlighting
+- **Monaco Editor** - Full-featured code editor (VS Code-like experience)
+- **Dracula Theme** - Beautiful dark theme for code editing
+
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Fast, unopinionated web framework
+- **MongoDB** - NoSQL database with Mongoose ODM
+- **JWT** - JSON Web Tokens for authentication
+- **bcrypt** - Password hashing and security
+
+### AI Integration
+- **Google Gemini AI** - Advanced AI model for code generation
+- **@google/generative-ai** - Official Google AI SDK
+
+### Development Tools
+- **ESLint** - Code linting and quality
+- **Prettier** - Code formatting
+- **Nodemon** - Auto-restart for development
+- **CORS** - Cross-origin resource sharing
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- MongoDB (local or cloud)
+- Google Gemini API key
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/uipilot.git
+   cd uipilot
+   ```
+
+2. **Install dependencies**
+   ```bash
+   # Install backend dependencies
+   cd backend
+   npm install
+   
+   # Install frontend dependencies
+   cd ../frontend
+   npm install
+   ```
+
+3. **Environment Setup**
+
+   Create `.env` file in the backend directory:
+   ```env
+   PORT=8090
+   NODE_ENV=development
+   MONGODB_URI=mongodb://localhost:27017/uipilot
+   JWT_SECRET=your_jwt_secret_here
+   GEMINI_API_KEY=your_gemini_api_key_here
+   DEV_GENERATIVE_MODEL=gemini-1.5-flash
+   ```
+
+4. **Start the servers**
+   ```bash
+   # Start backend (from backend directory)
+   npm start
+   
+   # Start frontend (from frontend directory)
+   npm run dev
+   ```
+
+5. **Open your browser**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:8090
+
+---
+
+## 📁 Project Structure
+
 ```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Chat session created successfully",
-  "data": {
-    "uuid": "session-uuid-here",
-    "title": "My Custom Chat Session",
-    "user": "user_id_here",
-    "createdAt": "2025-07-26T...",
-    "updatedAt": "2025-07-26T..."
-  }
-}
-```
-
-### 3.2 List All Chat Sessions
-```http
-GET http://localhost:4000/api/v1/ai/sessions?action=list
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Chat sessions retrieved successfully",
-  "data": [
-    {
-      "uuid": "session-uuid-1",
-      "title": "Create a simple HTML button...",
-      "latestMessage": "Here's a simple HTML button...",
-      "createdAt": "2025-07-26T...",
-      "updatedAt": "2025-07-26T..."
-    },
-    {
-      "uuid": "session-uuid-2",
-      "title": "My Custom Chat Session",
-      "latestMessage": null,
-      "createdAt": "2025-07-26T...",
-      "updatedAt": "2025-07-26T..."
-    }
-  ]
-}
-```
-
-### 3.3 Get Specific Chat Session with Messages
-```http
-GET http://localhost:4000/api/v1/ai/sessions/SESSION_UUID_HERE?action=get
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Chat session retrieved successfully",
-  "data": {
-    "session": {
-      "uuid": "session-uuid-here",
-      "title": "Create a simple HTML button...",
-      "user": "user_id_here",
-      "latestMessage": "Here's a simple HTML button...",
-      "createdAt": "2025-07-26T...",
-      "updatedAt": "2025-07-26T..."
-    },
-    "messages": [
-      {
-        "sender": "user",
-        "content": "Create a simple HTML button with CSS styling",
-        "code": null,
-        "htmlPreview": null,
-        "createdAt": "2025-07-26T..."
-      },
-      {
-        "sender": "ai",
-        "content": "Here's a simple HTML button with hover effects...",
-        "code": "<button class=\"hover-button\">Click Me</button>...",
-        "htmlPreview": null,
-        "createdAt": "2025-07-26T..."
-      }
-    ]
-  }
-}
-```
-
-### 3.4 Delete Chat Session
-```http
-DELETE http://localhost:4000/api/v1/ai/sessions/SESSION_UUID_HERE?action=delete
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Chat session deleted successfully"
-}
+UIpilot/
+├── backend/                 # Node.js/Express backend
+│   ├── src/
+│   │   ├── controllers/     # API controllers
+│   │   ├── models/         # Mongoose schemas
+│   │   ├── routers/        # API routes
+│   │   ├── middlewares/    # Express middlewares
+│   │   └── database/       # Database connection
+│   ├── server.js           # Main server file
+│   └── package.json
+├── frontend/               # React/TypeScript frontend
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   ├── pages/         # Page components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── types/         # TypeScript interfaces
+│   │   └── config/        # Configuration files
+│   ├── index.html
+│   └── package.json
+└── README.md
 ```
 
 ---
 
-## Step 4: Message Routes Testing
+## 🔧 API Documentation
 
-### 4.1 Get Messages for Specific Session
-```http
-GET http://localhost:4000/api/v1/ai/sessions/SESSION_UUID_HERE/messages?action=get
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
+### Authentication Endpoints
+- `POST /api/v1/auth/signup` - User registration
+- `POST /api/v1/auth/login` - User login
+- `GET /api/v1/auth/profile` - Get user profile
 
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Messages retrieved successfully",
-  "data": [
-    {
-      "sender": "user",
-      "content": "Create a simple HTML button",
-      "code": null,
-      "htmlPreview": null,
-      "createdAt": "2025-07-26T..."
-    },
-    {
-      "sender": "ai",
-      "content": "Here's your button code...",
-      "code": "<button>Click Me</button>",
-      "htmlPreview": null,
-      "createdAt": "2025-07-26T..."
-    }
-  ]
-}
-```
+### AI Code Generation
+- `POST /api/v1/ai/generate` - Generate React components with AI
 
-### 4.2 Update Message (Add HTML Preview)
-```http
-PUT http://localhost:4000/api/v1/ai/messages/MESSAGE_ID_HERE?action=update
-Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
+### Chat Sessions
+- `POST /api/v1/ai/sessions?action=create` - Create new chat session
+- `GET /api/v1/ai/sessions?action=list` - List user's chat sessions
+- `DELETE /api/v1/ai/sessions?action=delete&sessionId={uuid}` - Delete session
 
-{
-  "htmlPreview": "<!DOCTYPE html><html><head><title>Preview</title></head><body><button style='padding: 10px; background: blue; color: white;'>Click Me</button></body></html>"
-}
-```
+### Messages
+- `GET /api/v1/ai/messages?sessionId={uuid}` - Get messages for a session
+- `PUT /api/v1/ai/messages?action=update&messageId={id}` - Update message
 
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Message updated successfully",
-  "data": {
-    "_id": "message_id_here",
-    "sender": "ai",
-    "content": "Here's your button code...",
-    "code": "<button>Click Me</button>",
-    "htmlPreview": "<!DOCTYPE html><html>...",
-    "createdAt": "2025-07-26T...",
-    "updatedAt": "2025-07-26T..."
-  }
-}
-```
+### Code Preview
+- `GET /api/v1/ai/code-preview?messageId={id}` - Get code preview
+- `PUT /api/v1/ai/code-preview?messageId={id}` - Update code preview
 
-### 4.3 Delete Message
-```http
-DELETE http://localhost:4000/api/v1/ai/messages/MESSAGE_ID_HERE?action=delete
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
+---
 
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Message deleted successfully"
-}
+## 🎯 Usage Examples
+
+### Generate a React Button Component
+
+1. **Navigate to the code editor**
+   - Go to http://localhost:5173/code
+   - Sign up or log in
+
+2. **Create a new chat session**
+   - Click "New Chat" in the sidebar
+
+3. **Enter your prompt**
+   ```
+   Create a React button component with hover effects and TypeScript
+   ```
+
+4. **Generate and preview**
+   - Click "Send" to generate the component
+   - View the generated code in the editor
+   - See the live preview in the Sandpack panel
+   - Edit the code and see real-time updates
+
+### Example Prompts
+
+- "Create a React todo list component with add, delete, and toggle functionality"
+- "Build a React form component with validation and error handling"
+- "Generate a React card component with image, title, and description"
+- "Create a React navigation menu with dropdown functionality"
+- "Build a React modal component with backdrop and close functionality"
+
+---
+
+## 🔒 Security Features
+
+- **JWT Authentication** - Secure token-based authentication
+- **Password Hashing** - bcrypt for secure password storage
+- **CORS Protection** - Cross-origin request security
+- **Input Validation** - Server-side validation for all inputs
+- **Rate Limiting** - Protection against abuse
+- **Environment Variables** - Secure configuration management
+
+---
+
+## 🚀 Deployment
+
+### Backend Deployment (Heroku/ Railway/ Render)
+
+1. **Set environment variables**
+   ```env
+   PORT=8090
+   NODE_ENV=production
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secure_jwt_secret
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+2. **Deploy**
+   ```bash
+   git push heroku main
+   ```
+
+### Frontend Deployment (Vercel/ Netlify)
+
+1. **Build the project**
+   ```bash
+   npm run build
+   ```
+
+2. **Deploy the `dist` folder**
+
+### Environment Variables for Frontend
+```env
+VITE_API_BASE_URL=https://your-backend-url.com
 ```
 
 ---
 
-## Step 5: Code Preview Routes Testing
+## 🤝 Contributing
 
-### 5.1 Get Code Preview
-```http
-GET http://localhost:4000/api/v1/ai/preview/MESSAGE_ID_HERE
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
-```
+We welcome contributions! Please follow these steps:
 
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Code preview retrieved successfully",
-  "data": {
-    "messageId": "message_id_here",
-    "code": "<button class=\"hover-button\">Click Me</button>...",
-    "htmlPreview": "<!DOCTYPE html><html>...",
-    "hasCode": true
-  }
-}
-```
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add amazing feature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
 
-### 5.2 Update Code Preview
-```http
-PUT http://localhost:4000/api/v1/ai/preview/MESSAGE_ID_HERE
-Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN_HERE
+### Development Guidelines
 
-{
-  "htmlPreview": "<!DOCTYPE html><html><head><title>Updated Preview</title><style>button{padding:15px;background:green;color:white;border:none;border-radius:5px;cursor:pointer;}button:hover{background:darkgreen;}</style></head><body><button>Enhanced Button</button></body></html>"
-}
-```
-
-**Expected Response:**
-```json
-{
-  "success": true,
-  "message": "Code preview retrieved successfully",
-  "data": {
-    "messageId": "message_id_here",
-    "code": "<button class=\"hover-button\">Click Me</button>...",
-    "htmlPreview": "<!DOCTYPE html><html><head><title>Updated Preview</title>...",
-    "hasCode": true
-  }
-}
-```
+- Follow TypeScript best practices
+- Use meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+- Follow the existing code style
 
 ---
 
-## Testing Workflow (Recommended Order)
+## 📝 License
 
-### Phase 1: Setup
-1. **Start server**
-2. **Signup** → Get user created
-3. **Signin** → Get JWT token
-4. **Copy JWT token** for all subsequent requests
-
-### Phase 2: Basic AI Functionality
-5. **Generate AI Response** (new chat) → Get chatSessionId and messageId
-6. **Generate AI Response** (continue chat) → Verify session continuation
-
-### Phase 3: Session Management
-7. **List Chat Sessions** → Verify sessions are created
-8. **Get Specific Session** → Verify messages are stored correctly
-9. **Create Custom Session** → Test manual session creation
-
-### Phase 4: Message Operations
-10. **Get Messages** → Verify message retrieval
-11. **Update Message** → Add HTML preview
-12. **Get Code Preview** → Verify preview generation
-
-### Phase 5: Cleanup (Optional)
-13. **Delete Message** → Test message deletion
-14. **Delete Session** → Test session cleanup
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Common Issues & Troubleshooting
+## 🙏 Acknowledgments
 
-### 1. Authentication Errors (401)
-- **Issue**: Missing or invalid JWT token
-- **Solution**: Ensure `Authorization: Bearer YOUR_TOKEN` header is included
-
-### 2. Session Not Found (404)
-- **Issue**: Using wrong session UUID or session doesn't belong to user
-- **Solution**: Use correct UUID from previous responses
-
-### 3. Missing Environment Variables
-- **Issue**: Gemini API not working
-- **Solution**: Verify `GEMINI_API_KEY` in .env file
-
-### 4. Database Connection Issues
-- **Issue**: MongoDB connection failed
-- **Solution**: Check `DEV_MONGODB_URI` in .env file
+- **Google Gemini AI** - For providing the AI capabilities
+- **CodeSandbox** - For the amazing Sandpack integration
+- **React Team** - For the incredible React framework
+- **Vite Team** - For the lightning-fast build tool
+- **Tailwind CSS** - For the utility-first CSS framework
 
 ---
 
-## Test Data Examples
+## 📞 Support
 
-### Sample Prompts for AI Generation:
-```json
-{
-  "prompt": "Create a React todo list component with add, delete, and toggle functionality"
-}
+- **Issues**: [GitHub Issues](https://github.com/yourusername/uipilot/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/uipilot/discussions)
+- **Email**: support@uipilot.com
 
-{
-  "prompt": "Build a responsive CSS navigation bar with dropdown menus"
-}
+---
 
-{
-  "prompt": "Generate a Python function to calculate fibonacci numbers"
-}
+<div align="center">
 
-{
-  "prompt": "Create a JavaScript function to validate email addresses"
-}
-```
+**Made with ❤️ by the UIpilot Team**
 
-### Sample HTML Preview:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Preview</title>
-    <style>
-        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
-        .container { max-width: 1200px; margin: 0 auto; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Your generated code here -->
-    </div>
-</body>
-</html>
-```
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/uipilot?style=social)](https://github.com/yourusername/uipilot)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/uipilot?style=social)](https://github.com/yourusername/uipilot)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/uipilot)](https://github.com/yourusername/uipilot/issues)
 
-This guide should help you thoroughly test all your API endpoints! Start with Phase 1 and work through each phase systematically.
+</div>
